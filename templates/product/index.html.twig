@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product index{% endblock %}
+
+{% block body %}
+    <div class='container'> <br> <br>
+
+    <h1>Produits</h1>
+    {% include 'layouts/_flash_message.html.twig' %}
+<br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Image</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                 <td class="card" style="width: 18rem" > {% if product.image %}
+                            <img src="{{ asset('uploads/images/' ~ product.image) }}" alt="{{ product.name }}" style="width: 50%; height: auto;">
+                        {% else %}
+                            <p>Pas d'image disponible</p>
+                        {% endif %}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.price }}</td>
+                <td>
+                    <a href="{{ path('app_product_show', {'id': product.id}) }}">Voir</a>
+                    <a href="{{ path('app_product_edit', {'id': product.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_product_new') }}">Create new</a>
+
+        </div>
+{% endblock %}
