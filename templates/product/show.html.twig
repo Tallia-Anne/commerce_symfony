@@ -30,6 +30,16 @@
                 <th>Description</th>
                 <td>{{ product.description }}</td>
             </tr>
+
+            <tr>
+            <th>Stock</th>
+            <th> {% if product.stock > 0 %}
+                   <p class='fw-bold'>  {{ product.stock }} <p>
+                    {% else %}
+                <p class='fw-bold text-danger'> En rupture de stock</p>
+                {% endif %}</th>
+            </tr>
+
             <tr>
                 <th>Price</th>
                 <td>{{ product.price }}</td>
@@ -40,6 +50,8 @@
     <a class='btn btn-outline-primary'  href="{{ path('app_product_index') }}">back to list</a>
   
     <a class='btn btn-warning'  href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
+    <br>
+    <a class='btn btn-warning'  href="{{ path( 'app_product_stock_add_history', {'id': product.id}) }}">afficher l'historique des stock</a>
     <br>
     {{ include('product/_delete_form.html.twig') }}
     </div>

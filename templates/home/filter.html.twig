@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Filtre des produits{% endblock %}
 
 {% block body %}
 
 <div class="container">
-    <h1>Les produits</h1>
+    <h1>{{ subCategory.name }}</h1>
 
     <div class="row">
         {% for product in products %}
@@ -16,10 +16,8 @@
                         <div class="card-body">
                             <h5 class="card-title text-decoration-none text-dark">{{ product.name }}</h5>
                             <p class="card-text mb-4 text-decoration-none text-dark">{{ product.description|slice(0, 50) }}...</p>
-                            <h3 class='text-decoration-none text-dark  pb-3' >{{product.price}} EUR </h3>
-                            <div class='d-flex justify-content-center '>
+                              <h3 class='text-decoration-none text-dark pb-3' >{{product.price}} EUR </h3>
                             <a href="#" class="btn btn-primary">Ajouter au panier</a>
-                          </div>
                         </div>
                     </div>
                 </a>
